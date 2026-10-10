@@ -1,0 +1,520 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#05070c">
+  <meta name="description" content="NexaBank - Digital Banking">
+  <title>NexaBank — Digital Banking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <!-- HEADER -->
+    <header class="brand-header">
+      <a class="brand" href="#" id="brandHome" aria-label="NexaBank Home">
+        <div class="brand-symbol">N</div>
+        <div class="brand-word">NexaBank</div>
+      </a>
+
+      <div class="header-right">
+        <span class="secure-indicator">Secure Connection</span>
+        <span id="headerUsername" class="muted"></span>
+        <button id="headerLogout" class="secondary-button hidden" type="button">
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- LOGIN -->
+      <section id="loginSection" class="auth-section">
+        <div class="auth-intro">
+          <span class="eyebrow">WELCOME TO NEXABANK</span>
+          <h1>Banking made<br>simple and secure.</h1>
+          <p>
+            Kelola saldo virtual, akses berbagai layanan,
+            dan pantau aktivitas rekeningmu dalam satu tempat.
+          </p>
+
+          <div class="feature-list">
+            <div>
+              <span class="service-icon">↗</span>
+              <span>Transfer antar rekening NexaBank</span>
+            </div>
+            <div>
+              <span class="service-icon">◷</span>
+              <span>Pantau saldo dan riwayat transaksi</span>
+            </div>
+            <div>
+              <span class="service-icon">◇</span>
+              <span>Kelola rekening dalam satu dashboard</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-card">
+          <div class="card-heading">
+            <span class="eyebrow">YOUR ACCOUNT</span>
+            <h2>Selamat datang</h2>
+            <p>Masuk menggunakan akun NexaBank kamu.</p>
+          </div>
+
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="loginUsername">Username</label>
+              <div class="input-wrap">
+                <input
+                  id="loginUsername"
+                  name="username"
+                  type="text"
+                  placeholder="Masukkan username"
+                  autocomplete="username"
+                  required
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="loginPassword">Password</label>
+              <div class="input-wrap">
+                <input
+                  id="loginPassword"
+                  name="password"
+                  type="password"
+                  placeholder="Masukkan password"
+                  autocomplete="current-password"
+                  required
+                >
+                <button type="button" class="password-toggle" data-target="loginPassword">
+                  Show
+                </button>
+              </div>
+            </div>
+
+            <div id="loginMessage" class="form-message hidden" role="status"></div>
+
+            <button id="loginSubmit" class="primary-button" type="submit">
+              Login ke NexaBank
+            </button>
+          </form>
+
+          <div class="auth-switch">
+            Belum punya rekening?
+            <button type="button" id="showRegister" class="text-button">
+              Registrasi sekarang
+            </button>
+          </div>
+
+          <div class="security-note">
+            <strong>NexaBank Security</strong><br>
+            Jaga kerahasiaan password dan jangan bagikan token akunmu kepada orang lain.
+          </div>
+        </div>
+      </section>
+
+      <!-- REGISTRATION -->
+      <section id="registerSection" class="register-section hidden">
+        <div class="register-card">
+          <div class="card-heading">
+            <span class="eyebrow">JOIN NEXABANK</span>
+            <h2>Buat rekening</h2>
+            <p>Isi data berikut untuk membuat akun NexaBank baru.</p>
+          </div>
+
+          <form id="registerForm">
+            <div class="form-group">
+              <label for="registerUsername">Username</label>
+              <div class="input-wrap">
+                <input
+                  id="registerUsername"
+                  name="username"
+                  type="text"
+                  placeholder="Buat username"
+                  minlength="3"
+                  maxlength="30"
+                  autocomplete="username"
+                  required
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="registerEmail">Email</label>
+              <div class="input-wrap">
+                <input
+                  id="registerEmail"
+                  name="email"
+                  type="email"
+                  placeholder="nama@email.com"
+                  autocomplete="email"
+                  required
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="registerPassword">Password</label>
+              <div class="input-wrap">
+                <input
+                  id="registerPassword"
+                  name="password"
+                  type="password"
+                  placeholder="Minimal 8 karakter"
+                  minlength="8"
+                  autocomplete="new-password"
+                  required
+                >
+                <button type="button" class="password-toggle" data-target="registerPassword">
+                  Show
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="registerPasswordConfirm">Konfirmasi password</label>
+              <div class="input-wrap">
+                <input
+                  id="registerPasswordConfirm"
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="Ulangi password"
+                  minlength="8"
+                  autocomplete="new-password"
+                  required
+                >
+                <button type="button" class="password-toggle" data-target="registerPasswordConfirm">
+                  Show
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="registerAccountNumber">Nomor rekening</label>
+              <div class="account-number-row">
+                <div class="input-wrap">
+                  <input
+                    id="registerAccountNumber"
+                    type="text"
+                    placeholder="Dibuat saat registrasi berhasil"
+                    readonly
+                  >
+                </div>
+                <button id="generateAccountNumber" class="secondary-button" type="button">
+                  Buat Rekening
+                </button>
+              </div>
+              <p class="muted">
+                Nomor rekening resmi dibuat oleh server saat akun berhasil terdaftar.
+              </p>
+            </div>
+
+            <div class="captcha-box" id="captchaBox">
+              <button
+                type="button"
+                class="captcha-checkbox"
+                id="captchaCheckbox"
+                aria-label="Verifikasi Saya bukan robot"
+                aria-pressed="false"
+              >
+                <span class="captcha-check hidden" id="captchaCheck">✓</span>
+                <span class="captcha-spinner hidden" id="captchaSpinner"></span>
+              </button>
+
+              <div>
+                <strong>Saya bukan robot</strong>
+                <div class="muted" id="captchaStatus">Klik kotak untuk verifikasi visual</div>
+              </div>
+
+              <div class="captcha-brand">NexaBank<br>Verification</div>
+            </div>
+
+            <div id="registerMessage" class="form-message hidden" role="status"></div>
+
+            <button id="registerSubmit" class="primary-button" type="submit">
+              Buat Akun NexaBank
+            </button>
+          </form>
+
+          <div class="auth-switch">
+            Sudah punya akun?
+            <button type="button" id="showLogin" class="text-button">
+              Kembali ke Login
+            </button>
+          </div>
+
+          <div class="security-note">
+            Verifikasi visual ini bukan sistem anti-bot keamanan penuh.
+            Lindungi data login dan gunakan password yang kuat.
+          </div>
+        </div>
+      </section>
+
+      <!-- DASHBOARD -->
+      <section id="dashboardSection" class="dashboard-section hidden">
+
+        <div class="dashboard-topbar">
+          <div>
+            <span class="eyebrow">NEXABANK OVERVIEW</span>
+            <h1>Halo, <span id="dashboardUsername">Pengguna</span>!</h1>
+            <p>Selamat datang di dashboard rekeningmu.</p>
+          </div>
+
+          <button id="dashboardLogout" class="secondary-button" type="button">
+            Logout
+          </button>
+        </div>
+
+        <div class="virtual-account-notice">
+          <strong>Informasi rekening</strong><br>
+          NexaBank saat ini menggunakan saldo virtual untuk simulasi layanan.
+          Transaksi tidak memindahkan uang sungguhan.
+        </div>
+
+        <div class="balance-grid">
+          <article class="balance-card">
+            <span class="balance-label">Total Saldo</span>
+            <strong class="balance-amount" id="totalBalance">Rp150.000</strong>
+            <div class="balance-main">Total saldo rekening virtual</div>
+          </article>
+
+          <article class="balance-card">
+            <span class="balance-label">Saldo Tersedia</span>
+            <strong class="balance-amount balance-available" id="availableBalance">Rp50.000</strong>
+            <div class="balance-main">Dapat digunakan untuk transaksi virtual</div>
+          </article>
+
+          <article class="balance-card">
+            <span class="balance-label">Saldo Ditahan</span>
+            <strong class="balance-amount balance-held" id="heldBalance">Rp100.000</strong>
+            <div class="balance-main">Saldo yang tidak dapat digunakan</div>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+
+          <!-- QUICK ACCESS -->
+          <section class="dashboard-panel">
+            <span class="eyebrow">QUICK ACCESS</span>
+            <h2>Layanan NexaBank</h2>
+
+            <div class="service-grid">
+              <button
+                class="service-item"
+                type="button"
+                data-service="transfer"
+              >
+                <span class="service-icon">⇄</span>
+                <strong>Transfer</strong>
+                <span class="muted">Virtual</span>
+              </button>
+
+              <button
+                class="service-item"
+                type="button"
+                data-service="history"
+              >
+                <span class="service-icon">◷</span>
+                <strong>Riwayat</strong>
+                <span class="muted">Transaksi</span>
+              </button>
+
+              <button
+                class="service-item"
+                type="button"
+                data-service="payment"
+              >
+                <span class="service-icon">▤</span>
+                <strong>Pembayaran</strong>
+                <span class="muted">Virtual</span>
+              </button>
+
+              <button
+                class="service-item"
+                type="button"
+                data-service="qr"
+              >
+                <span class="service-icon">▦</span>
+                <strong>QR Pay</strong>
+                <span class="muted">Virtual</span>
+              </button>
+
+              <!-- REDEEM CODE -->
+              <button
+                class="service-item"
+                type="button"
+                data-service="redeem"
+                id="redeemServiceButton"
+              >
+                <span class="service-icon">🎁</span>
+                <strong>Redeem Code</strong>
+                <span class="muted">Tukar kode</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- ACCOUNT INFORMATION -->
+          <section class="dashboard-panel">
+            <span class="eyebrow">ACCOUNT INFORMATION</span>
+            <h2>Rekening Saya</h2>
+
+            <div class="form-group">
+              <label>Nama pengguna</label>
+              <div class="input-wrap">
+                <input id="accountUsername" type="text" readonly>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Nomor rekening</label>
+              <div class="input-wrap">
+                <input id="accountNumber" type="text" readonly>
+                <button type="button" id="copyAccountNumber">Salin</button>
+              </div>
+            </div>
+
+            <button class="secondary-button" type="button" data-service="profile">
+              Pengaturan Profil
+            </button>
+          </section>
+        </div>
+
+        <!-- TRANSACTION HISTORY -->
+        <section class="transaction-panel">
+          <span class="eyebrow">RECENT ACTIVITY</span>
+          <h2>Transaksi Terbaru</h2>
+
+          <div id="transactionList" class="transaction-list">
+            <div class="empty-state">
+              Belum ada transaksi yang ditampilkan.
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="secondary-button"
+            data-service="history"
+          >
+            Lihat Semua Riwayat
+          </button>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="brand-word">NexaBank</div>
+      <p>Digital Banking Experience</p>
+      <p>Saldo dan transaksi di situs ini bersifat virtual, bukan layanan perbankan nyata.</p>
+      <p>© <span id="currentYear"></span> NexaBank. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <!-- SERVICE MODAL -->
+  <div
+    id="serviceModal"
+    class="modal-overlay hidden"
+    aria-hidden="true"
+  >
+    <section
+      class="modal-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="serviceModalTitle"
+    >
+      <button
+        type="button"
+        class="modal-close"
+        id="serviceModalClose"
+        aria-label="Tutup"
+      >×</button>
+
+      <span class="card-label">NEXABANK SERVICE</span>
+      <h2 id="serviceModalTitle">Layanan NexaBank</h2>
+      <p id="serviceModalDescription">
+        Informasi layanan NexaBank.
+      </p>
+
+      
+
+      <button type="button" class="primary-button" id="serviceModalOk">
+        Mengerti
+      </button>
+    </section>
+  </div>
+
+  <!-- REDEEM MODAL -->
+  <div
+    id="redeemModal"
+    class="modal-overlay hidden"
+    aria-hidden="true"
+  >
+    <section
+      class="modal-card redeem-modal-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="redeemModalTitle"
+    >
+      <button
+        type="button"
+        class="modal-close"
+        id="redeemModalClose"
+        aria-label="Tutup"
+      >×</button>
+
+      <span class="card-label">NEXABANK REWARDS</span>
+      <h2 id="redeemModalTitle">Redeem Code</h2>
+      <p>Masukkan kode redeem untuk menambahkan saldo virtual ke rekeningmu.</p>
+
+      <form id="redeemForm">
+        <div class="form-group">
+          <label for="redeemCodeInput">Kode redeem</label>
+          <div class="input-wrap">
+            <input
+              id="redeemCodeInput"
+              name="code"
+              type="text"
+              placeholder="Contoh: NEXA-XXXX"
+              maxlength="64"
+              autocomplete="off"
+              autocapitalize="characters"
+              required
+            >
+          </div>
+        </div>
+
+        <div id="redeemMessage" class="form-message hidden" role="status" aria-live="polite"></div>
+
+        <button id="redeemSubmit" class="primary-button" type="submit">
+          Tukarkan Kode
+        </button>
+      </form>
+
+      <div class="redeem-history-section">
+        <h3>Riwayat Redeem</h3>
+        <div id="redeemHistoryList" class="transaction-list">
+          <div class="empty-state">Riwayat redeem akan ditampilkan di sini.</div>
+        </div>
+      </div>
+
+      <div class="security-note">
+        Kode hanya dapat ditukarkan sesuai ketentuan yang ditetapkan server.
+        Jangan bagikan kode pribadi kepada orang lain.
+      </div>
+    </section>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div
+    id="toastMessage"
+    class="toast-message hidden"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
